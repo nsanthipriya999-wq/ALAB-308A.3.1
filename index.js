@@ -7,10 +7,14 @@ async function getUserData(id) {
     db2: db2,
     db3: db3
   };
-
+   
+   
   try {
-    const returnedValue = await central(id);
-    const [userData, vaultData] = await Promise.all([dbs[returnedValue](id), vault(id)]); //parallel execution 
+    
+       const returnedValue = await central(id);
+     
+
+       const [userData, vaultData] = await Promise.all([dbs[returnedValue](id), vault(id)]); //parallel execution 
 
     //--------------------------object--------------------------------
     return{
@@ -25,8 +29,10 @@ async function getUserData(id) {
     };
 
   } catch (error) 
+
   {
-    throw error;
+  
+    return Promise.reject(error);
   }
 }
 //------------------------------------------------------------------------
