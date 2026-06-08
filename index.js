@@ -12,11 +12,9 @@ async function getUserData(id) {
   try {
     
        const returnedValue = await central(id);
-     
-
        const [userData, vaultData] = await Promise.all([dbs[returnedValue](id), vault(id)]); //parallel execution 
 
-    //--------------------------object--------------------------------
+    //--------------------------object---combining User data and Vault Data-----------------------------
     return{
       id,
       name:vaultData.name,
@@ -32,7 +30,7 @@ async function getUserData(id) {
 
   {
   
-    return Promise.reject(error);
+    throw error;
   }
 }
 //------------------------------------------------------------------------
